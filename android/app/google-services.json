@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "176961881326",
+    "firebase_url": "https://robotmonc.firebaseio.com",
+    "project_id": "robotmonc",
+    "storage_bucket": "robotmonc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176961881326:android:1d8a10b7675aebdd231fff",
+        "android_client_info": {
+          "package_name": "com.example.flutterlogindemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176961881326-hj8u3mstvui2feb282iibhl3ctivvljp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_eUQ95E2-EpfeW58nj8zI3yYwGMpHoB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176961881326-o927no0av6kjp06ik4h0if7d3fpkfgva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

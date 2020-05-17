@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     // throw UnimplementedError();
     return new MaterialApp(
       title: 'Flutter Login App',
+      debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         primarySwatch: Colors.deepPurple,
       ),

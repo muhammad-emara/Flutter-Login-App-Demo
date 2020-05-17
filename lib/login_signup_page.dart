@@ -12,7 +12,7 @@ class _LoginSignUpPageState extends State<LoginSignupPage> {
   String _password;
   bool _isloginForm = false;
   String _errorMessage;
-
+  bool _isLoginForm;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -48,7 +48,7 @@ class _LoginSignUpPageState extends State<LoginSignupPage> {
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
           radius: 48.0,
-          child: Image.asset('assets/images/drnutrition-logo.png'),
+          child: Image.asset('assets/drnutrition-logo.png'),
         ),
       ),
     );
@@ -101,7 +101,7 @@ class _LoginSignUpPageState extends State<LoginSignupPage> {
       child: SizedBox(
         height: 40.0,
         child: new RaisedButton(
-          onPressed: null,
+          onPressed: validateAndSubmit,
           elevation: 5.0,
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0)),
@@ -166,5 +166,50 @@ class _LoginSignUpPageState extends State<LoginSignupPage> {
   void resetForm() {
     _formKey.currentState.reset();
     _errorMessage = "";
+  }
+
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  // Perform login or signup
+  void validateAndSubmit() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+    });
+    if (validateAndSave()) {
+      String userId = "";
+      try {
+        if (_isLoginForm) {
+          userId = await widget.auth.signIn(_email, _password);
+          print('Signed in: $userId');
+        } else {
+          userId = await widget.auth.signUp(_email, _password);
+          //widget.auth.sendEmailVerification();
+          //_showVerifyEmailSentDialog();
+          print('Signed up user: $userId');
+        }
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (userId.length > 0 && userId != null && _isLoginForm) {
+          widget.loginCallback();
+        }
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.message;
+          _formKey.currentState.reset();
+        });
+      }
+    }
   }
 }
